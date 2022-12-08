@@ -16,6 +16,25 @@ class App(tk.Tk):#base class
         self.show_password_button = tk.Button(self,text="show password", command = lambda:self.changeEntry())
         self.show_password_button.grid(padx=0,pady=0,column=0,row=3,columnspan=1,rowspan=1,sticky="w")
         #sets up and places show password button
+class Select(App):#class to get username for scoreboard search
+    def __init__(self):
+        super().__init__()#gets all objets from class "App"
+        self.geometry("200x75")#resizes window
+        self.show_password_button.grid_forget()#removes "show_password_button"
+        self.Username_Label = tk.Label(self,text="Username:")
+        self.Username_Label.grid(padx=0,pady=0,column=0,row=0,columnspan=1,rowspan=1,sticky="w")
+        #adds Username lael
+        self.Space_Label = tk.Label(self,text=" ")
+        self.Space_Label.grid(padx=0,pady=0,column=0,row=1,columnspan=1,rowspan=1,sticky="W")
+        #adds blank label (layout)
+        self.Username_entry = tk.Entry(self)
+        self.Username_entry.grid(padx=0,pady=0,column=1,row=0,columnspan=1,rowspan=1,sticky="e")
+        #adds entry
+    def returnData(self):#called by submit button
+        self.Username=self.Username_entry.get()
+        self.destroy()
+    def getData(self):#called externally
+        return(self.Username)
 class Login(App):#login screen class
     def __init__(self):
         super().__init__()#gets all objects from class "App"
@@ -108,3 +127,7 @@ if __name__== "__main__":#if this program is run on its own
     print(Username)#test
     print(Password)#test
     print(Password_confirm)#test
+    TestWindow_three=Select()
+    TestWindow_three.mainloop()
+    Username = TestWindow_three.getData()
+    print(Username)
